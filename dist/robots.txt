@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://concordtreeremovalpros.com/sitemap-index.xml
