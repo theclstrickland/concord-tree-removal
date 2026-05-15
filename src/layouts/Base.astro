@@ -38,7 +38,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, site.url).toString
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Schema: LocalBusiness -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -90,7 +90,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, site.url).toString
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="logo">
-        <span class="logo-icon">🌲</span>
+        <svg class="logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L7 10h3L6 18h12l-4-8h3L12 2z"/><rect x="11" y="18" width="2" height="4" fill="currentColor" stroke="none"/></svg>
         <span class="logo-text">{site.name}</span>
       </a>
 
@@ -142,7 +142,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, site.url).toString
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="logo">
-            <span class="logo-icon">🌲</span>
+            <svg class="logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L7 10h3L6 18h12l-4-8h3L12 2z"/><rect x="11" y="18" width="2" height="4" fill="currentColor" stroke="none"/></svg>
             <span class="logo-text">{site.name}</span>
           </div>
           <p class="footer-desc">{site.description}</p>
@@ -203,7 +203,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, site.url).toString
       text-decoration: none;
       flex-shrink: 0;
     }
-    .logo-icon { font-size: 28px; }
+    .logo-icon { width: 28px; height: 28px; flex-shrink: 0; }
     .logo-text {
       font-family: var(--font-heading);
       font-size: 20px;

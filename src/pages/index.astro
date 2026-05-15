@@ -29,7 +29,9 @@ import { site } from '../data/site';
       </div>
       <div class="hero-visual">
         <div class="hero-card">
-          <div class="hero-card-icon">🌲</div>
+          <div class="hero-card-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L7 10h3L6 18h12l-4-8h3L12 2z"/><rect x="11" y="18" width="2" height="4" rx="0.5" fill="currentColor" stroke="none"/></svg>
+          </div>
           <div class="hero-card-title">Tree Experts</div>
           <div class="hero-card-stat">Cabarrus County's Trusted Tree Service</div>
           <div class="hero-card-divider"></div>
@@ -54,7 +56,7 @@ import { site } from '../data/site';
       <div class="services-grid">
         {site.services.map(s => (
           <a href={`/${s.slug}/`} class="service-card">
-            <span class="service-icon">{s.icon}</span>
+            <span class="service-icon" set:html={s.icon} />
             <h3>{s.name}</h3>
             <p>{s.shortDesc}</p>
             <span class="service-price">{s.priceRange}</span>
@@ -72,22 +74,30 @@ import { site } from '../data/site';
       <h2 class="section-title">The {site.city} Tree Service Difference</h2>
       <div class="why-grid">
         <div class="why-card">
-          <div class="why-icon">⚡</div>
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
           <h3>Fast Response</h3>
           <p>Same-day estimates and rapid scheduling. When storms hit, we're there within hours — not days.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon">🛡️</div>
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
           <h3>Fully Insured</h3>
           <p>Complete liability coverage and workers' comp on every job. Your property is always protected.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon">💰</div>
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
           <h3>Honest Pricing</h3>
           <p>Free estimates with flat-rate quotes. The price we quote is the price you pay — no hidden fees or surprise charges.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon">🏆</div>
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l-2 5h4l-2-5z"/><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
           <h3>Expert Crew</h3>
           <p>Trained professionals with the equipment to handle any job — from tight residential spaces to large-scale commercial clearing.</p>
         </div>
@@ -255,7 +265,7 @@ import { site } from '../data/site';
     padding: 36px;
     backdrop-filter: blur(10px);
   }
-  .hero-card-icon { font-size: 48px; margin-bottom: 16px; }
+  .hero-card-icon { margin-bottom: 16px; color: var(--green-400); }
   .hero-card-title {
     font-family: var(--font-heading);
     font-size: 24px;
@@ -303,7 +313,7 @@ import { site } from '../data/site';
     box-shadow: var(--shadow-lg);
     transform: translateY(-4px);
   }
-  .service-icon { font-size: 36px; margin-bottom: 16px; }
+  .service-icon { margin-bottom: 16px; color: var(--green-600); }
   .service-card h3 {
     font-size: 20px;
     margin-bottom: 10px;
@@ -337,7 +347,7 @@ import { site } from '../data/site';
     text-align: center;
     padding: 32px 20px;
   }
-  .why-icon { font-size: 40px; margin-bottom: 16px; }
+  .why-icon { margin-bottom: 16px; color: var(--green-600); }
   .why-card h3 { font-size: 19px; margin-bottom: 10px; }
   .why-card p { font-size: 14px; color: var(--gray-600); }
 

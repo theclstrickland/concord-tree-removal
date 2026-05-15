@@ -73,7 +73,7 @@ const otherServices = site.services.filter(s => s.slug !== slug);
       <div class="other-grid">
         {otherServices.map(s => (
           <a href={`/${s.slug}/`} class="other-card">
-            <span class="other-icon">{s.icon}</span>
+            <span class="other-icon" set:html={s.icon} />
             <h3>{s.name}</h3>
             <p>{s.shortDesc}</p>
           </a>
@@ -157,7 +157,7 @@ const otherServices = site.services.filter(s => s.slug !== slug);
     transition: all 0.2s;
   }
   .other-card:hover { border-color: var(--green-400); box-shadow: var(--shadow-md); }
-  .other-icon { font-size: 28px; }
+  .other-icon { color: var(--green-600); }
   .other-card h3 { font-size: 17px; margin: 8px 0 6px; }
   .other-card p { font-size: 13px; color: var(--gray-600); }
 

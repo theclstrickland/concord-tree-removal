@@ -40,7 +40,7 @@ const otherLocations = site.locations.filter(l => l.slug !== slug);
       <div class="loc-services-grid">
         {site.services.map(s => (
           <a href={`/${s.slug}/`} class="loc-svc-card">
-            <span class="loc-svc-icon">{s.icon}</span>
+            <span class="loc-svc-icon" set:html={s.icon} />
             <div>
               <h3>{s.name}</h3>
               <p>{s.shortDesc}</p>
@@ -99,7 +99,7 @@ const otherLocations = site.locations.filter(l => l.slug !== slug);
     transition: all 0.2s;
   }
   .loc-svc-card:hover { border-color: var(--green-400); box-shadow: var(--shadow-md); }
-  .loc-svc-icon { font-size: 32px; flex-shrink: 0; }
+  .loc-svc-icon { flex-shrink: 0; color: var(--green-600); }
   .loc-svc-card h3 { font-size: 17px; margin-bottom: 4px; }
   .loc-svc-card p { font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
   .loc-svc-price { font-size: 14px; font-weight: 700; color: var(--green-700); }
