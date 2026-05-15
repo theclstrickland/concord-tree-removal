@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="600" viewBox="0 0 1920 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a3a2a"/>
+      <stop offset="100%" stop-color="#224c38"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="600" fill="url(#bg)"/>
+  <!-- Large single tree silhouette - represents the company -->
+  <g opacity="0.1" fill="#43a96d">
+    <!-- Canopy layers -->
+    <ellipse cx="960" cy="280" rx="200" ry="120"/>
+    <ellipse cx="960" cy="220" rx="160" ry="100"/>
+    <ellipse cx="960" cy="170" rx="110" ry="80"/>
+    <ellipse cx="960" cy="130" rx="60" ry="55"/>
+    <!-- Trunk -->
+    <rect x="940" y="350" width="40" height="180" rx="8"/>
+    <!-- Roots -->
+    <path d="M940,520 Q880,540 820,530" stroke="#43a96d" stroke-width="8" fill="none" opacity="0.8"/>
+    <path d="M980,520 Q1040,540 1100,530" stroke="#43a96d" stroke-width="8" fill="none" opacity="0.8"/>
+    <path d="M950,530 Q910,560 860,570" stroke="#43a96d" stroke-width="6" fill="none" opacity="0.6"/>
+    <path d="M970,530 Q1010,560 1060,570" stroke="#43a96d" stroke-width="6" fill="none" opacity="0.6"/>
+  </g>
+  <!-- Subtle circular accents -->
+  <g opacity="0.04" fill="none" stroke="#6bc48e" stroke-width="1">
+    <circle cx="300" cy="200" r="80"/>
+    <circle cx="300" cy="200" r="120"/>
+    <circle cx="1650" cy="400" r="70"/>
+    <circle cx="1650" cy="400" r="110"/>
+  </g>
+</svg>

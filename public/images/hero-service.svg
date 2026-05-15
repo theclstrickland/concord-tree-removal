@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="600" viewBox="0 0 1920 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a3a2a"/>
+      <stop offset="100%" stop-color="#2d6347"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="600" fill="url(#bg)"/>
+  <!-- Stump cross-section rings -->
+  <g opacity="0.06" fill="none" stroke="#8b6333" stroke-width="1.5">
+    <circle cx="1600" cy="300" r="60"/>
+    <circle cx="1600" cy="300" r="90"/>
+    <circle cx="1600" cy="300" r="120"/>
+    <circle cx="1600" cy="300" r="155"/>
+    <circle cx="1600" cy="300" r="195"/>
+    <circle cx="1600" cy="300" r="240"/>
+    <circle cx="1600" cy="300" r="290"/>
+  </g>
+  <!-- Leaf shapes scattered -->
+  <g opacity="0.07" fill="#43a96d">
+    <ellipse cx="100" cy="100" rx="20" ry="35" transform="rotate(-30 100 100)"/>
+    <ellipse cx="300" cy="500" rx="18" ry="30" transform="rotate(15 300 500)"/>
+    <ellipse cx="500" cy="150" rx="22" ry="38" transform="rotate(-45 500 150)"/>
+    <ellipse cx="1400" cy="80" rx="16" ry="28" transform="rotate(20 1400 80)"/>
+    <ellipse cx="1700" cy="520" rx="20" ry="32" transform="rotate(-10 1700 520)"/>
+    <ellipse cx="800" cy="450" rx="18" ry="30" transform="rotate(35 800 450)"/>
+    <ellipse cx="1200" cy="200" rx="22" ry="36" transform="rotate(-25 1200 200)"/>
+  </g>
+  <!-- Subtle diagonal lines like wood grain -->
+  <g opacity="0.04" stroke="#c9a66b" stroke-width="1">
+    <line x1="0" y1="0" x2="400" y2="600"/>
+    <line x1="200" y1="0" x2="600" y2="600"/>
+    <line x1="400" y1="0" x2="800" y2="600"/>
+    <line x1="600" y1="0" x2="1000" y2="600"/>
+    <line x1="800" y1="0" x2="1200" y2="600"/>
+    <line x1="1000" y1="0" x2="1400" y2="600"/>
+    <line x1="1200" y1="0" x2="1600" y2="600"/>
+    <line x1="1400" y1="0" x2="1800" y2="600"/>
+    <line x1="1600" y1="0" x2="1920" y2="480"/>
+  </g>
+</svg>
