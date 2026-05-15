@@ -10,8 +10,8 @@
 export const site = {
   // ── Brand ──────────────────────────────────────────────
   name: 'Concord Tree Removal',
-  domain: 'concordtreeremoval.com',
-  url: 'https://concordtreeremoval.com',
+  domain: 'concordtreeremovalpros.com',
+  url: 'https://concordtreeremovalpros.com',
   phone: '(704) 313-1555',
   phoneTel: '+17043131555',
   tagline: 'Tree Removal & Trimming Services',

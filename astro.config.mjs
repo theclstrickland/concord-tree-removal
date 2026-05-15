@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://concordtreeremoval.com',
+  site: 'https://concordtreeremovalpros.com',
   build: {
     format: 'directory',
   },
