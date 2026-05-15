@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+---
+
+<Base title={`About | ${site.name}`} description={`Learn about ${site.name}. Professional tree service in ${site.city}, ${site.state} and surrounding areas.`}>
+  <section class="about-hero">
+    <div class="container">
+      <p class="section-label">About Us</p>
+      <h1>About {site.name}</h1>
+      <p class="about-intro">Professional tree removal, trimming, stump grinding, and emergency storm cleanup serving {site.city}, {site.state} and the surrounding {site.county} County communities.</p>
+    </div>
+  </section>
+
+  <section class="about-body">
+    <div class="container about-content">
+      <h2>Your Local Tree Care Team</h2>
+      <p>{site.name} was built to solve a simple problem: homeowners and businesses in the {site.city} metro need reliable, professional tree service that shows up on time, does quality work, and charges a fair price. No games, no hidden fees, no runaround.</p>
+      <p>We serve residential and commercial customers across {site.counties} counties. Whether you need a single dead branch trimmed or an entire lot cleared for new construction, our crew has the equipment, training, and experience to handle it safely and efficiently.</p>
+
+      <h2>What Sets Us Apart</h2>
+      <p>Every estimate is free. Every quote is flat-rate. Every job includes complete debris cleanup. We carry full liability insurance and workers' compensation coverage, so your property — and our team — are always protected.</p>
+      <p>When storms hit Cabarrus County, we respond fast. Our 24/7 emergency line means you're never stuck waiting for Monday morning when a tree is on your roof Saturday night.</p>
+
+      <h2>Services We Provide</h2>
+      <p>Our core services include tree removal (any size), tree trimming and pruning, stump grinding and removal, emergency storm cleanup, and lot clearing for new construction. We work on residential properties, commercial sites, and municipal projects throughout the {site.city} metro.</p>
+
+      <h2>Areas We Serve</h2>
+      <p>We're based in {site.city} and serve the surrounding communities including {site.locations.map(l => l.name).join(', ')}. If you're in {site.county} County or nearby, give us a call — we can almost certainly help.</p>
+
+      <div class="about-cta">
+        <h3>Ready to Get Started?</h3>
+        <p>Call us for a free estimate or fill out our contact form.</p>
+        <a href={`tel:${site.phoneTel}`} class="btn btn-primary">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-hero {
+    background: linear-gradient(135deg, var(--green-900), var(--green-800));
+    color: var(--white);
+    padding: 72px 0 80px;
+  }
+  .about-hero h1 { color: var(--white); margin-bottom: 16px; }
+  .about-intro { font-size: 18px; color: rgba(255,255,255,0.8); max-width: 620px; }
+  .about-body { padding: 64px 0; }
+  .about-content { max-width: 740px; }
+  .about-content h2 { margin: 36px 0 12px; }
+  .about-content p { color: var(--gray-700); line-height: 1.75; }
+  .about-cta {
+    margin-top: 48px;
+    padding: 36px;
+    background: var(--green-50);
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+  .about-cta h3 { margin-bottom: 8px; }
+  .about-cta p { color: var(--gray-600); margin-bottom: 20px; }
+</style>

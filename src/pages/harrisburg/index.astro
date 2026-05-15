@@ -1,0 +1,9 @@
+---
+import LocationPage from '../../layouts/LocationPage.astro';
+import { site } from '../../data/site';
+
+const slug = Astro.url.pathname.replace(/^\/|\/$/g, '');
+const page = site.locations.find(l => l.slug === slug);
+---
+
+{page && <LocationPage {...page} />}

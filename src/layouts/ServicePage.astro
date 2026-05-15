@@ -1,0 +1,172 @@
+---
+import Base from './Base.astro';
+import { site } from '../data/site';
+
+interface Props {
+  name: string;
+  slug: string;
+  headline: string;
+  intro: string;
+  body: string;
+  benefits: string[];
+  priceRange: string;
+}
+
+const { name, slug, headline, intro, body, benefits, priceRange } = Astro.props;
+const otherServices = site.services.filter(s => s.slug !== slug);
+---
+
+<Base
+  title={`${name} in ${site.city}, ${site.state} | ${site.name}`}
+  description={`Professional ${name.toLowerCase()} in ${site.city}, ${site.state}. ${intro} Call ${site.phone} for a free estimate.`}
+>
+  <section class="svc-hero">
+    <div class="container">
+      <p class="section-label">{site.city}, {site.state}</p>
+      <h1>{headline}</h1>
+      <p class="svc-intro">{intro}</p>
+      <div class="svc-actions">
+        <a href={`tel:${site.phoneTel}`} class="btn btn-cta">Call {site.phone}</a>
+        <a href="/contact/" class="btn btn-secondary">Get Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-body">
+    <div class="container svc-body-grid">
+      <div class="svc-content">
+        <Fragment set:html={body} />
+      </div>
+      <aside class="svc-sidebar">
+        <div class="sidebar-card">
+          <h3>Typical Cost</h3>
+          <p class="sidebar-price">{priceRange}</p>
+          <p class="sidebar-note">Exact quotes provided free after on-site assessment.</p>
+          <a href={`tel:${site.phoneTel}`} class="btn btn-primary" style="width:100%;justify-content:center;">Call Now</a>
+        </div>
+        <div class="sidebar-card">
+          <h3>Why Choose Us</h3>
+          <ul class="sidebar-benefits">
+            {benefits.map(b => (
+              <li><span>✓</span> {b}</li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="svc-areas">
+    <div class="container">
+      <h2>{name} Available In</h2>
+      <div class="areas-grid">
+        {site.locations.map(l => (
+          <a href={`/${l.slug}/`} class="area-tag">{l.name}, {site.state}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-other">
+    <div class="container">
+      <h2>Other Services</h2>
+      <div class="other-grid">
+        {otherServices.map(s => (
+          <a href={`/${s.slug}/`} class="other-card">
+            <span class="other-icon">{s.icon}</span>
+            <h3>{s.name}</h3>
+            <p>{s.shortDesc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-cta">
+    <div class="container" style="text-align:center;">
+      <h2>Need {name} in {site.city}?</h2>
+      <p>Get a free, no-obligation estimate today. Same-day response guaranteed.</p>
+      <a href={`tel:${site.phoneTel}`} class="btn btn-cta">Call {site.phone}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .svc-hero {
+    background: linear-gradient(135deg, var(--green-900), var(--green-700));
+    color: var(--white);
+    padding: 72px 0 80px;
+  }
+  .svc-hero h1 { color: var(--white); margin-bottom: 16px; }
+  .svc-intro { font-size: 18px; color: rgba(255,255,255,0.8); max-width: 600px; margin-bottom: 28px; }
+  .svc-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .svc-hero .btn-secondary { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+  .svc-body { padding: 64px 0; }
+  .svc-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    align-items: start;
+  }
+  .svc-content { font-size: 16px; line-height: 1.75; }
+  .svc-content :global(h2) { margin: 32px 0 12px; font-size: 28px; }
+  .svc-content :global(h3) { margin: 24px 0 8px; font-size: 22px; }
+  .svc-content :global(p) { margin-bottom: 16px; color: var(--gray-700); }
+  .svc-content :global(ul) { margin: 12px 0 20px 20px; }
+  .svc-content :global(li) { margin-bottom: 8px; color: var(--gray-700); list-style: disc; }
+
+  .sidebar-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .sidebar-card h3 { font-size: 18px; margin-bottom: 12px; }
+  .sidebar-price { font-size: 28px; font-weight: 700; color: var(--green-700); }
+  .sidebar-note { font-size: 13px; color: var(--gray-500); margin: 8px 0 20px; }
+  .sidebar-benefits { display: flex; flex-direction: column; gap: 10px; }
+  .sidebar-benefits li { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+  .sidebar-benefits span { color: var(--green-600); font-weight: 700; }
+
+  .svc-areas { background: var(--green-50); padding: 48px 0; }
+  .svc-areas h2 { text-align: center; margin-bottom: 24px; }
+  .areas-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .area-tag {
+    padding: 10px 20px;
+    background: var(--white);
+    border: 1px solid var(--green-200, var(--gray-200));
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .area-tag:hover { background: var(--green-600); color: var(--white); }
+
+  .svc-other { padding: 64px 0; }
+  .svc-other h2 { text-align: center; margin-bottom: 32px; }
+  .other-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .other-card {
+    padding: 24px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+  }
+  .other-card:hover { border-color: var(--green-400); box-shadow: var(--shadow-md); }
+  .other-icon { font-size: 28px; }
+  .other-card h3 { font-size: 17px; margin: 8px 0 6px; }
+  .other-card p { font-size: 13px; color: var(--gray-600); }
+
+  .svc-cta { background: var(--green-900); padding: 64px 0; }
+  .svc-cta h2 { color: var(--white); margin-bottom: 12px; }
+  .svc-cta p { color: rgba(255,255,255,0.7); font-size: 17px; margin-bottom: 24px; }
+
+  @media (max-width: 900px) {
+    .svc-body-grid { grid-template-columns: 1fr; }
+    .other-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .other-grid { grid-template-columns: 1fr; }
+  }
+</style>
