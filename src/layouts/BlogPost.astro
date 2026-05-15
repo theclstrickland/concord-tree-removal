@@ -1,0 +1,331 @@
+---
+import Base from './Base.astro';
+import { site } from '../data/site';
+import { blogPosts } from '../data/blog';
+
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  readTime: string;
+  slug: string;
+}
+
+const { title, description, date, readTime, slug } = Astro.props;
+const relatedPosts = blogPosts.filter(p => p.slug !== slug).slice(0, 3);
+const formattedDate = new Date(date + 'T12:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Base title={`${title} | ${site.name}`} description={description}>
+  <article class="blog-article">
+    <div class="blog-hero">
+      <div class="container">
+        <a href="/blog/" class="blog-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          All Articles
+        </a>
+        <h1>{title}</h1>
+        <div class="blog-meta">
+          <time datetime={date}>{formattedDate}</time>
+          <span class="meta-sep">|</span>
+          <span>{readTime}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container blog-grid">
+      <div class="blog-content">
+        <slot />
+      </div>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-cta">
+          <h3>Need Tree Service?</h3>
+          <p>Get a free, no-obligation estimate from our Concord crew.</p>
+          <a href={`tel:${site.phoneTel}`} class="btn btn-cta sidebar-phone">{site.phone}</a>
+          <a href="/contact/" class="btn btn-secondary sidebar-form-btn">Request Estimate</a>
+        </div>
+
+        <div class="sidebar-services">
+          <h3>Our Services</h3>
+          <ul>
+            {site.services.map(s => (
+              <li><a href={`/${s.slug}/`}>{s.name}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="sidebar-areas">
+          <h3>Areas We Serve</h3>
+          <div class="area-pills">
+            {site.locations.map(l => (
+              <a href={`/${l.slug}/`} class="pill">{l.name}</a>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    {relatedPosts.length > 0 && (
+      <div class="related-section">
+        <div class="container">
+          <h2>Related Articles</h2>
+          <div class="related-grid">
+            {relatedPosts.map(p => (
+              <a href={`/blog/${p.slug}/`} class="related-card">
+                <h3>{p.title}</h3>
+                <p>{p.description}</p>
+                <span class="related-link">Read More</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
+
+    <div class="blog-bottom-cta">
+      <div class="container">
+        <h2>Ready to Get Started?</h2>
+        <p>Call today for a free estimate on any tree service in {site.city} and surrounding areas.</p>
+        <div class="bottom-cta-actions">
+          <a href={`tel:${site.phoneTel}`} class="btn btn-cta">Call {site.phone}</a>
+          <a href="/contact/" class="btn btn-secondary">Get Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .blog-hero {
+    background: linear-gradient(135deg, var(--green-900), var(--green-800));
+    background-image: url('/images/hero-service.svg');
+    background-size: cover;
+    color: var(--white);
+    padding: 48px 0 56px;
+  }
+  .blog-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--green-300);
+    margin-bottom: 20px;
+    transition: color 0.2s;
+  }
+  .blog-back:hover { color: var(--white); }
+  .blog-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    line-height: 1.25;
+    margin-bottom: 12px;
+    max-width: 700px;
+  }
+  .blog-meta {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .meta-sep { opacity: 0.4; }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 48px;
+    padding: 48px 0 64px;
+    align-items: start;
+  }
+
+  /* Content */
+  .blog-content {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--gray-800);
+  }
+  .blog-content :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--green-900);
+    margin: 40px 0 16px;
+    line-height: 1.3;
+  }
+  .blog-content :global(h3) {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--green-800);
+    margin: 32px 0 12px;
+  }
+  .blog-content :global(p) {
+    margin-bottom: 18px;
+  }
+  .blog-content :global(ul),
+  .blog-content :global(ol) {
+    margin: 0 0 20px 24px;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .blog-content :global(ol) { list-style: decimal; }
+  .blog-content :global(li) { line-height: 1.6; }
+  .blog-content :global(a) {
+    color: var(--green-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .blog-content :global(a:hover) { color: var(--green-800); }
+  .blog-content :global(strong) { color: var(--green-900); }
+
+  /* Sidebar */
+  .blog-sidebar { position: sticky; top: 88px; }
+  .sidebar-cta {
+    background: var(--green-800);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .sidebar-cta h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+  .sidebar-cta p {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .sidebar-phone {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .sidebar-form-btn {
+    display: block;
+    border-color: rgba(255,255,255,0.3);
+    color: var(--white);
+    text-align: center;
+  }
+  .sidebar-form-btn:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  .sidebar-services, .sidebar-areas {
+    background: var(--green-50);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .sidebar-services h3, .sidebar-areas h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--green-900);
+    margin-bottom: 12px;
+  }
+  .sidebar-services ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sidebar-services a {
+    color: var(--green-700);
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .sidebar-services a:hover { color: var(--green-900); }
+  .area-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    background: var(--green-200);
+    color: var(--green-800);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .pill:hover { background: var(--green-300); }
+
+  /* Related */
+  .related-section {
+    background: var(--gray-50);
+    padding: 56px 0;
+  }
+  .related-section h2 {
+    font-family: var(--font-heading);
+    text-align: center;
+    margin-bottom: 32px;
+    color: var(--green-900);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .related-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .related-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--green-900);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .related-card p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .related-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green-600);
+  }
+
+  /* Bottom CTA */
+  .blog-bottom-cta {
+    background: var(--green-800);
+    color: var(--white);
+    text-align: center;
+    padding: 56px 0;
+  }
+  .blog-bottom-cta h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+  .blog-bottom-cta p {
+    opacity: 0.85;
+    margin-bottom: 28px;
+    font-size: 17px;
+  }
+  .bottom-cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .bottom-cta-actions .btn-secondary {
+    border-color: rgba(255,255,255,0.3);
+    color: var(--white);
+  }
+
+  @media (max-width: 900px) {
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-sidebar { position: static; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>
